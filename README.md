@@ -99,7 +99,7 @@ public class trainFareCalculating {
 ## Quá trình sinh testcase
 ### Đồ thị dòng điều khiển (CFG)
 Dựa vào mã nguồn, ta có đồ thị dòng điều khiển sau:
-![](E:\Assignments\3rdyear\INT3117-Testing&QA\BT\CFGPractice\src\main\resources\TrainFareCFG.drawio.png)j
+![](./src/main/resources/TrainFareCFG.png)
 
 ### Testcases cho độ phủ C2
 | ID | Input h | Input age | Expected Output |
