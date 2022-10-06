@@ -10,6 +10,8 @@
   - [Đặc tả](#Đặc-tả)
   - [Đoạn mã được kiểm thử](#Đoạn-mã-được-kiểm-thử)
 - [Quá trình sinh testcase](#Quá-trình-sinh-testcase)
+  - [Đồ thị dòng điều khiển (CFG)](#Đồ-thị-dòng-điều-khiển-(CFG))
+  - [Testcases cho độ phủ C2](#Testcases-cho-độ-phủ-C2)
 - [Kiểm thử](#Kiểm-thử)
     - [Mã nguồn bộ test sử dụng TestNG](#Mã-nguồn-bộ-test-sử-dụng-TestNG)
     - [Kết quả](#Kết-quả)
@@ -95,7 +97,126 @@ public class trainFareCalculating {
 ```
 
 ## Quá trình sinh testcase
+### Đồ thị dòng điều khiển (CFG)
+Dựa vào mã nguồn, ta có đồ thị dòng điều khiển sau:
+![](E:\Assignments\3rdyear\INT3117-Testing&QA\BT\CFGPractice\src\main\resources\TrainFareCFG.drawio.png)j
+
+### Testcases cho độ phủ C2
+| ID | Input h | Input age | Expected Output |
+|---|---|---|---|
+| 1| 24 | 5 |-1|
+| 2| 5  |2 |0 |
+| 3|8|8|45000|
+| 4|8|36|60000|
+| 5|8|67|51000|
+| 6|16|8|30000|
+| 7|16|67|34000|
+| 8|16|36|40000|
 
 ## Kiểm thử
 ### Mã nguồn bộ test sử dụng TestNG
+[C2Test.java](./src/test/java/C2Test.java)
+
+```java
+public class C2Test {
+
+  @Test
+  public void test1() {
+    int h = 24;
+    int age = 5;
+    int EO = -1;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println("h\t\tage\t\tEO\t\t\tAO");
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test2() {
+    int h = 5;
+    int age = 2;
+    int EO = 0;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test3() {
+    int h = 8;
+    int age = 8;
+    int EO = 45000;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test4() {
+    int h = 8;
+    int age = 36;
+    int EO = 60000;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test5() {
+    int h = 8;
+    int age = 67;
+    int EO = 51000;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test6() {
+    int h = 16;
+    int age = 8;
+    int EO = 30000;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test7() {
+    int h = 16;
+    int age = 67;
+    int EO = 34000;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+
+  @Test
+  public void test8() {
+    int h = 16;
+    int age = 36;
+    int EO = 40000;
+    int price = trainFareCalculating.trainFareCalculate(h, age);
+    System.out.println(h + "\t\t" + age + "\t\t" + EO + "\t\t" + price);
+    Assert.assertEquals(price, EO);
+  }
+}
+```
+
 ### Kết quả
+| ID | Input h | Input age | Expected Output | Actual Output | Result |
+|---|---|---|---|---|---|
+| 1| 24 | 5 |-1|-1|Passed|
+| 2| 5  |2 |0 |0 |Passed|
+| 3|8|8|45000|45000|Passed|
+| 4|8|36|60000|60000|Passed|
+| 5|8|67|51000|51000|Passed|
+| 6|16|8|30000|30000|Passed|
+| 7|16|67|34000|34000|Passed|
+| 8|16|36|40000|40000|Passed|
+
+![](src/main/resources/result.png)
+
+![](src/main/resources/resultDetails.png)
+
+Như vậy, bộ test không phát hiện ra lỗi của chương trình.
